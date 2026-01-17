@@ -1,0 +1,124 @@
+.ai-flow-viz {
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.ai-flow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: var(--spacing-xl) 0;
+  flex-wrap: wrap;
+}
+
+.ai-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  min-width: 160px;
+  transition: all var(--transition-medium);
+}
+
+.ai-node:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.ai-node-input {
+  border-color: rgba(212, 168, 83, 0.3);
+}
+
+.ai-node-process {
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.ai-node-output {
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+.node-icon {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.node-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.node-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.ai-connection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 -10px;
+}
+
+.ai-connection-line {
+  stroke-dasharray: 5, 5;
+  animation: dash-flow 2s linear infinite;
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.ai-flow-labels {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-flow-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.label-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ai-flow-container {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .ai-connection {
+    transform: rotate(90deg);
+    margin: 0;
+  }
+
+  .ai-node {
+    min-width: 200px;
+  }
+
+  .ai-flow-labels {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}

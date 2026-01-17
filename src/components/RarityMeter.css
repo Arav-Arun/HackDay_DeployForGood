@@ -1,0 +1,87 @@
+.rarity-meter {
+  width: 100%;
+}
+
+.rarity-meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.rarity-label-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.rarity-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.rarity-score {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.rarity-percentile {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  background: rgba(212, 168, 83, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+}
+
+.rarity-meter-bar {
+  position: relative;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.rarity-meter-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px currentColor;
+}
+
+.scale-markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.rarity-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.rarity-scale span {
+  flex: 1;
+  text-align: center;
+}
+
+.rarity-scale span:first-child {
+  text-align: left;
+}
+
+.rarity-scale span:last-child {
+  text-align: right;
+}

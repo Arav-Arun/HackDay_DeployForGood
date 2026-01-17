@@ -1,0 +1,85 @@
+.unique-summary {
+  padding: var(--spacing-5);
+}
+
+.rarest-traits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.rare-trait-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.trait-name {
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+
+.trait-value {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  flex: 1;
+  word-break: break-word;
+}
+
+.trait-rarity {
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rare-trait-item:nth-child(1) .trait-rarity {
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+}
+
+.rare-trait-item:nth-child(2) .trait-rarity {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.rare-trait-item:nth-child(3) .trait-rarity {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.ai-summary {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+  padding-top: var(--spacing-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .unique-summary {
+    padding: var(--spacing-4);
+  }
+
+  .rare-trait-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-1);
+  }
+
+  .trait-value {
+    flex: none;
+  }
+
+  .ai-summary {
+    font-size: 0.85rem;
+  }
+}

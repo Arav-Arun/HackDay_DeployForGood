@@ -1,0 +1,90 @@
+.gas-tracker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gas-icon {
+  font-size: 0.9rem;
+}
+
+.gas-label {
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+
+.gas-values {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.gas-value {
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.gas-value.low {
+  color: #10b981;
+}
+
+.gas-value.avg {
+  color: #f59e0b;
+}
+
+.gas-value.high {
+  color: #ef4444;
+}
+
+.gas-separator {
+  color: var(--color-text-tertiary);
+  opacity: 0.5;
+}
+
+.gas-unit {
+  color: var(--color-text-tertiary);
+  font-size: 0.7rem;
+}
+
+.gas-hint {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+}
+
+.gas-tracker.gas-low {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.gas-tracker.gas-high {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .gas-tracker {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .gas-label {
+    display: none;
+  }
+
+  .gas-unit {
+    font-size: 0.65rem;
+  }
+
+  .gas-hint {
+    display: none;
+  }
+}

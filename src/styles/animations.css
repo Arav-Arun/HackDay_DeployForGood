@@ -1,0 +1,535 @@
+/* ========================================
+   LoreMint - Refined Animations & Effects
+   ======================================== */
+
+/* ========================================
+   Ambient Background Animation
+   ======================================== */
+
+.ambient-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-primary) 0%,
+    var(--color-bg-secondary) 25%,
+    var(--color-bg-tertiary) 50%,
+    var(--color-bg-secondary) 75%,
+    var(--color-bg-primary) 100%
+  );
+  background-size: 400% 400%;
+  animation: ambient-shift 30s ease infinite;
+}
+
+@keyframes ambient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Add subtle glow overlay */
+.ambient-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, var(--color-accent-soft) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 139, 139, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(0, 73, 83, 0.06) 0%, transparent 50%);
+  animation: glow-move 20s ease-in-out infinite;
+}
+
+@keyframes glow-move {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ========================================
+   Floating Particles
+   ======================================== */
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent-primary), transparent);
+  pointer-events: none;
+}
+
+.particle-1 {
+  width: 4px;
+  height: 4px;
+  animation: float-particle-1 10s ease-in-out infinite;
+}
+
+.particle-2 {
+  width: 6px;
+  height: 6px;
+  animation: float-particle-2 12s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.particle-3 {
+  width: 3px;
+  height: 3px;
+  animation: float-particle-3 14s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+@keyframes float-particle-1 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-100px, -200px);
+  }
+}
+
+@keyframes float-particle-2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(150px, -250px) rotate(180deg);
+  }
+}
+
+@keyframes float-particle-3 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-80px, -180px);
+  }
+}
+
+/* ========================================
+   NFT Card Hover Effects
+   ======================================== */
+
+.nft-card {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--transition-slow);
+}
+
+.nft-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.nft-card:hover::before {
+  opacity: 1;
+}
+
+.nft-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-2xl), var(--glow-accent-strong);
+}
+
+/* ========================================
+   Rarity Aura Effect
+   ======================================== */
+
+.rarity-aura-common {
+  box-shadow: 0 0 30px rgba(115, 115, 115, 0.3);
+}
+
+.rarity-aura-uncommon {
+  box-shadow: 0 0 35px rgba(34, 197, 94, 0.4);
+  animation: pulse-green 3s ease-in-out infinite;
+}
+
+.rarity-aura-rare {
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+  animation: pulse-blue 3s ease-in-out infinite;
+}
+
+.rarity-aura-epic {
+  box-shadow: 0 0 50px rgba(168, 85, 247, 0.6);
+  animation: pulse-purple 3s ease-in-out infinite;
+}
+
+.rarity-aura-legendary {
+  box-shadow: 0 0 60px rgba(251, 191, 36, 0.7), 0 0 90px rgba(251, 191, 36, 0.4);
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 35px rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(34, 197, 94, 0.7);
+  }
+}
+
+@keyframes pulse-blue {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes pulse-purple {
+  0%, 100% {
+    box-shadow: 0 0 50px rgba(168, 85, 247, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 70px rgba(168, 85, 247, 0.9);
+  }
+}
+
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 60px rgba(251, 191, 36, 0.7), 0 0 90px rgba(251, 191, 36, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 80px rgba(251, 191, 36, 1), 0 0 120px rgba(251, 191, 36, 0.6);
+  }
+}
+
+/* ========================================
+   Shimmer Loading Effect
+   ======================================== */
+
+.shimmer-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-shimmer);
+  background-size: 200% 100%;
+  animation: shimmer-slide 2s infinite;
+}
+
+@keyframes shimmer-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ========================================
+   Page Transition Effects
+   ======================================== */
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--transition-slow);
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: all var(--transition-base);
+}
+
+/* ========================================
+   Rarity Meter Animation
+   ======================================== */
+
+.rarity-meter-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gradient-accent);
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.rarity-meter-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer-slide 2s infinite;
+}
+
+/* ========================================
+   Trait Card Reveal Animation
+   ======================================== */
+
+.trait-card-reveal {
+  animation: reveal-slide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes reveal-slide {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Stagger animation for multiple trait cards */
+.trait-card-reveal:nth-child(1) { animation-delay: 0.05s; }
+.trait-card-reveal:nth-child(2) { animation-delay: 0.1s; }
+.trait-card-reveal:nth-child(3) { animation-delay: 0.15s; }
+.trait-card-reveal:nth-child(4) { animation-delay: 0.2s; }
+.trait-card-reveal:nth-child(5) { animation-delay: 0.25s; }
+.trait-card-reveal:nth-child(6) { animation-delay: 0.3s; }
+
+/* ========================================
+   AI Flow Node Animation
+   ======================================== */
+
+.ai-node {
+  position: relative;
+  animation: node-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes node-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.92;
+  }
+}
+
+.ai-connection-line {
+  stroke-dasharray: 5, 5;
+  animation: dash 2s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+/* ========================================
+   Hover Magnetic Effect
+   ======================================== */
+
+.magnetic-hover {
+  transition: transform var(--transition-base);
+}
+
+.magnetic-hover:hover {
+  transform: scale(1.04);
+}
+
+/* ========================================
+   Glow Text Effect
+   ======================================== */
+
+.text-glow {
+  text-shadow: 
+    0 0 10px currentColor, 
+    0 0 20px currentColor,
+    0 0 30px currentColor;
+}
+
+.text-glow-accent {
+  color: var(--color-accent-primary);
+  text-shadow: 
+    0 0 10px var(--color-accent-primary),
+    0 0 20px var(--color-accent-primary), 
+    0 0 30px var(--color-accent-primary);
+}
+
+.text-glow-secondary {
+  color: var(--color-accent-secondary);
+  text-shadow: 
+    0 0 10px var(--color-accent-secondary), 
+    0 0 20px var(--color-accent-secondary),
+    0 0 30px var(--color-accent-secondary);
+}
+
+/* ========================================
+   Fade In Animation
+   ======================================== */
+
+.fade-in {
+  animation: fadeIn var(--transition-slow) ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   Slide Up Animation
+   ======================================== */
+
+.slide-up {
+  animation: slideUp var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   Scale In Animation
+   ======================================== */
+
+.scale-in {
+  animation: scaleIn var(--transition-base) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================================
+   Skeleton Loading
+   ======================================== */
+
+.skeleton {
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-shimmer);
+  background-size: 200% 100%;
+  animation: shimmer-slide 1.5s infinite;
+}
+
+/* ========================================
+   Ripple Effect
+   ======================================== */
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  animation: ripple 0.6s;
+  opacity: 0;
+}
+
+.ripple-effect:active::after {
+  animation: ripple 0.6s;
+}

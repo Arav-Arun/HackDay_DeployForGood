@@ -1,0 +1,62 @@
+.spam-warning {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.spam-warning-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.spam-icon {
+  font-size: 1.25rem;
+  color: #ef4444;
+}
+
+.spam-title {
+  font-weight: 600;
+  color: #ef4444;
+  font-size: var(--text-sm);
+}
+
+.spam-reasons {
+  margin: var(--spacing-2) 0;
+  padding-left: var(--spacing-5);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.spam-reasons li {
+  margin-bottom: 4px;
+}
+
+.spam-advice {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .spam-warning {
+    padding: var(--spacing-3);
+  }
+
+  .spam-title {
+    font-size: 0.8rem;
+  }
+
+  .spam-reasons {
+    font-size: 0.7rem;
+  }
+
+  .spam-advice {
+    font-size: 0.7rem;
+  }
+}

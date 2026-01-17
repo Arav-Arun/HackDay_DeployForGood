@@ -1,0 +1,113 @@
+.value-analysis {
+  padding: var(--spacing-6);
+  border-radius: var(--radius-xl);
+  background: var(--glass-bg);
+  border: 1px solid var(--color-border-accent);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.valuation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-4);
+}
+
+.valuation-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-6);
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-accent);
+  text-align: center;
+}
+
+.valuation-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  margin-bottom: var(--spacing-2);
+  font-weight: 700;
+}
+
+.valuation-price {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-accent-primary);
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tighter);
+  text-shadow: var(--glow-accent);
+}
+
+.eth-symbol {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  margin-right: var(--spacing-1);
+  opacity: 0.85;
+}
+
+.valuation-sub {
+  margin-top: var(--spacing-2);
+  font-size: var(--text-sm);
+  color: var(--color-accent-secondary);
+  background: var(--color-bg-tertiary);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.valuation-factors h4 {
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+.factor-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.factor-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.factor-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.factor-icon {
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+}
+
+.factor-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.factor-text strong {
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .valuation-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+}

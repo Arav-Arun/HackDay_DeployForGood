@@ -1,0 +1,50 @@
+.price-chart-container {
+  padding: var(--spacing-6);
+}
+
+.chart-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin: 0 0 var(--spacing-4) 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
+}
+
+.floor-price-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-6) 0;
+}
+
+.floor-price-value {
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--color-accent-primary);
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tighter);
+}
+
+.floor-price-fiat {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.chart-loading {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary);
+}
+
+.chart-disclaimer {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: var(--spacing-4) 0 0 0;
+  font-weight: 600;
+}

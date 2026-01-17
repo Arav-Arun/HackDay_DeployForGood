@@ -1,0 +1,149 @@
+.nft-search {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-form {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+}
+
+.search-inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.search-input {
+  padding: 0.875rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: "Courier New", monospace;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-btn {
+  padding: 0.875rem 1.5rem;
+  height: fit-content;
+  white-space: nowrap;
+}
+
+.search-error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  color: rgb(248, 113, 113);
+  font-size: 0.875rem;
+}
+
+/* Quick Search Section */
+.quick-search {
+  margin-top: 2rem;
+}
+
+.quick-search-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.collection-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.collection-card:hover {
+  border-color: var(--accent-primary);
+}
+
+.collection-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.sample-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.token-btn {
+  padding: 0.375rem 0.75rem;
+  background: rgba(212, 168, 83, 0.1);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--accent-primary);
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.token-btn:hover {
+  background: rgba(212, 168, 83, 0.2);
+  border-color: var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+
+  .collections-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+}

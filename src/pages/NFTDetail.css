@@ -1,0 +1,737 @@
+.nft-detail-page {
+  min-height: 100vh;
+  padding: var(--spacing-4) 0 var(--spacing-16);
+  margin-left: 80px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Cinematic Background - Purple tint */
+.cinematic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cinematic-blur {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(140px) brightness(0.15) saturate(1.3);
+  transform: scale(1.3);
+}
+
+.cinematic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(45, 38, 64, 0.92) 0%,
+    rgba(45, 38, 64, 0.96) 100%
+  );
+}
+
+/* Navigation */
+.detail-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-8);
+  position: relative;
+  z-index: 10;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-5);
+  background: var(--color-surface-glass-dark);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.back-btn:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-accent-lavender);
+  transform: translateX(-4px);
+}
+
+.back-btn svg {
+  transition: transform var(--transition-fast);
+}
+
+.back-btn:hover svg {
+  transform: translateX(-3px);
+}
+
+.nav-actions {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--color-surface-glass-dark);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.nav-link:hover {
+  background: rgba(184, 168, 217, 0.15);
+  border-color: var(--color-accent-lavender);
+  color: var(--color-accent-lavender);
+}
+
+/* Hero Section */
+.nft-hero {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: var(--spacing-12);
+  align-items: start;
+  margin-bottom: var(--spacing-12);
+  padding-bottom: var(--spacing-12);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.hero-artwork {
+  position: sticky;
+  top: 100px;
+}
+
+.artwork-frame {
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  background: var(--color-bg-tertiary);
+  border: 3px solid var(--color-accent-lavender);
+  box-shadow: var(--shadow-2xl);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.artwork-frame:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    var(--shadow-2xl),
+    0 0 60px rgba(184, 168, 217, 0.2);
+}
+
+.nft-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+/* Collection Badge */
+.collection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-4) var(--spacing-2) var(--spacing-2);
+  background: var(--color-surface-glass-dark);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  width: fit-content;
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.collection-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-accent-lavender);
+}
+
+.collection-badge .collection-name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-wide);
+}
+
+.verified-badge {
+  flex-shrink: 0;
+}
+
+/* NFT Title - Elegant Italic Serif */
+.nft-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: var(--tracking-normal);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.token-id {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  color: var(--color-accent-lavender);
+  margin: 0;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Quick Stats */
+.quick-stats {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-2);
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 140px;
+  max-width: 220px;
+  padding: var(--spacing-4) var(--spacing-5);
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.stat-card:hover {
+  border-color: var(--color-accent-lavender);
+  transform: translateY(-2px);
+}
+
+.stat-card.highlight {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-primary);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+}
+
+.stat-value {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stat-value.owner-address {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.stat-value.owner-you {
+  color: var(--color-success);
+}
+
+/* Hero Actions */
+.hero-actions {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-2);
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--spacing-8);
+  align-items: start;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  position: sticky;
+  top: 100px;
+}
+
+/* Content Card - Dark Glass Style */
+.content-card {
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-6);
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(12px);
+}
+
+.content-card:hover {
+  border-color: var(--color-accent-primary);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
+}
+
+.card-header .card-title {
+  margin: 0;
+}
+
+.title-icon {
+  font-size: var(--text-2xl);
+}
+
+.ai-badge {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  color: var(--color-accent-lavender);
+  background: rgba(184, 168, 217, 0.15);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  border: 1px solid var(--color-accent-lavender);
+}
+
+/* About Section */
+.about-block {
+  margin-bottom: var(--spacing-6);
+}
+
+.about-block:last-child {
+  margin-bottom: 0;
+}
+
+.about-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.about-text {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.about-text strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* About Stats */
+.about-stats {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.about-stat {
+  background: var(--color-bg-tertiary);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-default);
+  font-weight: 600;
+}
+
+.about-stat strong {
+  color: var(--color-accent-lavender);
+}
+
+/* About Links */
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.about-link:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-accent-lavender);
+  color: var(--color-accent-lavender);
+  transform: translateY(-2px);
+}
+
+.about-link svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.about-link:hover svg {
+  opacity: 1;
+}
+
+.address-link {
+  color: var(--color-accent-lavender);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  transition: opacity var(--transition-fast);
+}
+
+.address-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Traits Grid */
+.traits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-3);
+}
+
+.no-data {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: var(--spacing-12);
+  text-align: center;
+  background: var(--color-surface-glass);
+  border-radius: var(--radius-xl);
+  border: 1px dashed var(--color-border-default);
+}
+
+/* Rarity Note */
+.rarity-note {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: var(--spacing-4) 0 0 0;
+  line-height: var(--leading-relaxed);
+}
+
+.rarity-note strong {
+  color: var(--color-accent-lavender);
+  font-weight: 700;
+}
+
+/* Info List */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-3) 0;
+  border-bottom: 1px solid var(--color-border-card);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+.info-value.link {
+  color: var(--color-accent-lavender);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.info-value.link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Loading State */
+.loading-state {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: var(--spacing-12);
+}
+
+.loading-artwork {
+  aspect-ratio: 1;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding-top: var(--spacing-8);
+}
+
+.loading-bar {
+  height: 32px;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.loading-bar.wide {
+  width: 80%;
+}
+.loading-bar.medium {
+  width: 50%;
+}
+.loading-bar.short {
+  width: 30%;
+}
+
+/* Error State */
+.error-state {
+  max-width: 560px;
+  margin: var(--spacing-24) auto;
+  text-align: center;
+  padding: var(--spacing-12) var(--spacing-8);
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-4);
+}
+
+.error-state h2 {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--spacing-3);
+  font-weight: 800;
+}
+
+.error-state p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-6);
+  font-size: var(--text-lg);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .nft-hero {
+    grid-template-columns: 440px 1fr;
+    gap: var(--spacing-10);
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr 360px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nft-detail-page {
+    padding: var(--spacing-6) 0 var(--spacing-12);
+  }
+
+  .nft-hero {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+
+  .hero-artwork {
+    position: static;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .hero-info {
+    text-align: center;
+    align-items: center;
+  }
+
+  .quick-stats {
+    justify-content: center;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-column {
+    position: static;
+  }
+
+  .loading-state {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nft-detail-page {
+    margin-left: 0;
+    padding: var(--spacing-4) 0 var(--spacing-8);
+  }
+
+  .detail-nav {
+    flex-direction: column;
+    gap: var(--spacing-4);
+    align-items: stretch;
+  }
+
+  .nav-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nft-title {
+    font-size: var(--text-3xl);
+  }
+
+  .token-id {
+    font-size: var(--text-sm);
+  }
+
+  .quick-stats {
+    flex-direction: column;
+  }
+
+  .stat-card {
+    min-width: 100%;
+    max-width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .content-card {
+    padding: var(--spacing-5);
+    border-radius: var(--radius-xl);
+  }
+
+  .card-title {
+    font-size: var(--text-lg);
+  }
+
+  .about-links {
+    flex-direction: column;
+  }
+
+  .about-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .traits-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .collection-badge {
+    padding: var(--spacing-2) var(--spacing-3) var(--spacing-2) var(--spacing-2);
+  }
+
+  .collection-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .collection-name {
+    font-size: var(--text-xs);
+  }
+
+  .traits-grid {
+    grid-template-columns: 1fr;
+  }
+}

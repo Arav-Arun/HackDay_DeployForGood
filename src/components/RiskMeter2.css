@@ -1,0 +1,82 @@
+.risk-meter {
+  padding: var(--spacing-5);
+}
+
+.risk-gauge {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: var(--spacing-3) 0;
+}
+
+.risk-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.risk-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--spacing-3);
+}
+
+.risk-factors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.risk-factors li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.risk-factors li.positive {
+  color: #10b981;
+}
+
+.risk-factors li.negative {
+  color: #f59e0b;
+}
+
+.factor-icon {
+  font-weight: 700;
+  width: 16px;
+  text-align: center;
+}
+
+.risk-meter.risk-low {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.risk-meter.risk-medium {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.risk-meter.risk-high {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .risk-meter {
+    padding: var(--spacing-4);
+  }
+
+  .risk-label {
+    font-size: 1rem;
+  }
+
+  .risk-factors li {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,106 @@
+.sale-history-card {
+  padding: var(--spacing-6);
+}
+
+.last-sale-highlight {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-4);
+}
+
+.last-sale-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.last-sale-price {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-accent-primary);
+}
+
+.last-sale-marketplace {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.sales-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.sale-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: var(--text-sm);
+}
+
+.sale-item:last-child {
+  border-bottom: none;
+}
+
+.sale-price {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  min-width: 80px;
+}
+
+.sale-marketplace {
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+.sale-tx-link {
+  font-size: var(--text-xs);
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  padding: 2px 6px;
+  border: 1px solid var(--color-border-accent);
+  border-radius: 4px;
+}
+
+.sale-tx-link:hover {
+  background: var(--color-accent-soft);
+}
+
+.no-sales {
+  text-align: center;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding: var(--spacing-8);
+  background: var(--color-surface-glass);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--color-border-default);
+  margin-top: var(--spacing-4);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sale-history-card {
+    padding: var(--spacing-4);
+  }
+
+  .last-sale-highlight {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+
+  .last-sale-price {
+    font-size: var(--text-lg);
+  }
+
+  .sale-item {
+    font-size: 0.8rem;
+  }
+}

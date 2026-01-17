@@ -1,0 +1,42 @@
+.contract-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.contract-badge.verified {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.contract-badge.unverified {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-icon {
+  font-size: 0.8rem;
+}
+
+.badge-text {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .contract-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .badge-icon {
+    font-size: 0.75rem;
+  }
+}

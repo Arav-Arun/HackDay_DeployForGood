@@ -1,0 +1,125 @@
+.buy-score {
+  padding: var(--spacing-5);
+}
+
+.score-display {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin: var(--spacing-4) 0;
+}
+
+.score-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-tertiary);
+  border: 3px solid currentColor;
+  flex-shrink: 0;
+}
+
+.score-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-max {
+  font-size: 0.7rem;
+  color: var(--color-text-tertiary);
+}
+
+.score-verdict {
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex: 1;
+  word-wrap: break-word;
+}
+
+.score-reason {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-3);
+  word-wrap: break-word;
+}
+
+.score-disclaimer {
+  font-size: 0.7rem;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Score colors */
+.buy-score.score-positive {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.buy-score.score-positive .score-circle {
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.buy-score.score-positive .score-verdict {
+  color: #10b981;
+}
+
+.buy-score.score-neutral {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.buy-score.score-neutral .score-circle {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.buy-score.score-neutral .score-verdict {
+  color: #f59e0b;
+}
+
+.buy-score.score-negative {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.buy-score.score-negative .score-circle {
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.buy-score.score-negative .score-verdict {
+  color: #ef4444;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .buy-score {
+    padding: var(--spacing-4);
+  }
+
+  .score-display {
+    gap: var(--spacing-3);
+  }
+
+  .score-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .score-number {
+    font-size: 1.3rem;
+  }
+
+  .score-verdict {
+    font-size: 1rem;
+  }
+
+  .score-reason {
+    font-size: 0.8rem;
+  }
+}
