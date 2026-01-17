@@ -40,7 +40,7 @@
 
 ### Artificial Intelligence
 
-- **[OpenAI API](https://openai.com/)**: Powers the lore generation (`gpt-4o-mini`) and trait analysis.
+- Google Gemini API
 
 ### Visualization & UI
 
@@ -58,7 +58,6 @@
 - Node.js (v16+)
 - npm or yarn
 - An [Alchemy API Key](https://alchemy.com/)
-- An [OpenAI API Key](https://openai.com/)
 
 ### Installation
 
@@ -80,7 +79,7 @@
 
    ```env
    VITE_ALCHEMY_API_KEY=your_alchemy_api_key
-   VITE_OPENAI_API_KEY=your_openai_api_key
+   VITE_GEMINI_API_KEY=your_gemini_api_key
    VITE_WALLETCONNECT_PROJECT_ID=your_walletconnect_id
    ```
 
