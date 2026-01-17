@@ -1,7 +1,5 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+// NFT Research Service - uses backend proxy to keep API keys secure
+const API_BASE = "/api";
 
 /**
  * Known NFT collection data - verified real information
@@ -319,14 +317,17 @@ ${
 }`;
 
   try {
-    const result = await model.generateContent(prompt);
-    const content = result.response.text();
-    const cleanedContent = content
-      .replace(/```json\s*/g, "")
-      .replace(/```\s*/g, "")
-      .trim();
+    const response = await fetch(`${API_BASE}/research`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
 
-    return JSON.parse(cleanedContent);
+    if (!response.ok) {
+      throw new Error("Research API error");
+    }
+
+    return await response.json();
   } catch (error) {
     console.error("Research generation error (using fallback):", error);
 

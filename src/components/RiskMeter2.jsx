@@ -32,10 +32,9 @@ const RiskMeter2 = ({
         // Check contract verification via Etherscan
         let isVerified = true;
         try {
-          const apiKey = import.meta.env.VITE_ETHERSCAN_API_KEY || "";
-          const apiParam = apiKey ? `&apikey=${apiKey}` : "";
+          // Use backend proxy to keep API key hidden
           const response = await fetch(
-            `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}${apiParam}`
+            `/api/etherscan?module=contract&action=getsourcecode&address=${contractAddress}`,
           );
           const data = await response.json();
           if (data.status === "1" && data.result && data.result[0]) {

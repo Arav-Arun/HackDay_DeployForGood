@@ -1,9 +1,5 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-
-// Chat model - using Gemini 2.5 Flash for fast responses
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+// Chat AI Service - uses backend proxy to keep API keys secure
+const API_BASE = "/api";
 
 // Start a chat with an NFT character - they'll have their own personality!
 export const startChatSession = async (nftData) => {
@@ -72,42 +68,52 @@ export const startChatSession = async (nftData) => {
     5. Use *actions* sparingly like *adjusts hat* or *checks wallet*
   `;
 
-  try {
-    // Fire up the chat session
-    const chat = model.startChat({
-      history: [
-        {
-          role: "user",
-          parts: [
-            {
-              text: systemPrompt + "\n\nUser: Hey, you there?",
-            },
-          ],
-        },
-        {
-          role: "model",
-          parts: [
-            {
-              text: `*looks up* Yeah, I'm here. What's up?`,
-            },
-          ],
-        },
-      ],
-      generationConfig: {
-        maxOutputTokens: 150, // Shorter responses
-        temperature: 0.8, // Slightly less chaotic
-      },
-    });
+  // Store history locally for conversation continuity
+  const history = [
+    {
+      role: "user",
+      parts: [{ text: systemPrompt + "\n\nUser: Hey, you there?" }],
+    },
+    {
+      role: "model",
+      parts: [{ text: `*looks up* Yeah, I'm here. What's up?` }],
+    },
+  ];
 
-    return chat;
-  } catch (error) {
-    console.error("AI Chat Initialization Error:", error);
+  // Return a session object that calls our backend
+  return {
+    history,
+    systemPrompt,
+    ambientSound,
+    sendMessage: async (userMsg) => {
+      try {
+        const response = await fetch(`${API_BASE}/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userMessage: userMsg,
+            history,
+          }),
+        });
 
-    // If chat fails, return a mock session so the UI doesn't break
-    return {
-      sendMessage: async (userMsg) => {
-        console.log("Mock Chat User Message:", userMsg);
-        // Simple mock responses based on persona
+        if (!response.ok) {
+          throw new Error("Backend API error");
+        }
+
+        const data = await response.json();
+
+        // Update local history
+        history.push({ role: "user", parts: [{ text: userMsg }] });
+        history.push({ role: "model", parts: [{ text: data.text }] });
+
+        return {
+          response: {
+            text: () => data.text,
+            candidates: [{ content: { parts: [{ text: data.text }] } }],
+          },
+        };
+      } catch (error) {
+        console.error("Chat API Error:", error);
         const mockResponses = [
           `*Glitch in the matrix* (My API consciousness is buffering...)`,
           `*Looks distracted* Sorry, the ${ambientSound} is really loud today. What did you say?`,
@@ -115,7 +121,6 @@ export const startChatSession = async (nftData) => {
           `*Adjusts pixels* I'm currently offline in the metaverse. Try again later.`,
           `*Sighs* Look, I'd love to chat, but I'm just a jpeg right now. The AI brain is asleep.`,
         ];
-
         return {
           response: {
             text: () =>
@@ -135,9 +140,9 @@ export const startChatSession = async (nftData) => {
             ],
           },
         };
-      },
-    };
-  }
+      }
+    },
+  };
 };
 
 // Send a message and parse the response
@@ -146,23 +151,16 @@ export const sendMessage = async (chatSession, message) => {
     const result = await chatSession.sendMessage(message);
     const response = await result.response;
 
-    console.log("AI Raw Response:", JSON.stringify(response, null, 2));
-
     let text = "";
     if (response.candidates && response.candidates.length > 0) {
       const candidate = response.candidates[0];
       if (candidate.finishReason === "SAFETY") {
         return "*Coughs nervously* (Safety filters blocked this response)";
       }
-      if (
-        candidate.content &&
-        candidate.content.parts &&
-        candidate.content.parts.length > 0
-      ) {
+      if (candidate.content?.parts?.length > 0) {
         text = candidate.content.parts.map((p) => p.text).join("");
       }
     } else {
-      // Try standard text() accessor as fallback
       try {
         text = response.text();
       } catch (e) {
@@ -179,7 +177,6 @@ export const sendMessage = async (chatSession, message) => {
     console.error("AI Chat Error Details:", {
       message: error.message,
       stack: error.stack,
-      raw: error,
     });
 
     if (error.message.includes("API key")) {
@@ -214,16 +211,17 @@ export const generateLore = async (nft) => {
       }
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    const response = await fetch(`${API_BASE}/chat/lore`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
 
-    // Clean up markdown code blocks if present
-    const cleanText = text
-      .replace(/```json/g, "")
-      .replace(/```/g, "")
-      .trim();
-    return JSON.parse(cleanText);
+    if (!response.ok) {
+      throw new Error("Lore generation failed");
+    }
+
+    return await response.json();
   } catch (error) {
     console.error("AI Lore Generation Error:", error);
 
@@ -237,7 +235,6 @@ export const generateLore = async (nft) => {
 
     const mockStories = [
       `In the vast expanse of the digital ether, ${nft.name} emerged as a singular entity, forged from unique traits and encoded destiny. Unlike others in the ${nft.collection || "collection"}, this being possesses a rare consciousness, humming with the energy of the blockchain.`,
-
       `Wandering the neon-lit corridors of the Metaverse, ${nft.name} searches for meaning amidst the data streams. With traits that set them apart, they have become a legend among peers, known for their distinct appearance and mysterious aura.`,
     ];
 

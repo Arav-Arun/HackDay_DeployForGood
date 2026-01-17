@@ -1,12 +1,5 @@
-import OpenAI from "openai";
-
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-
-// SDK setup - allows browser usage (needed for frontend apps)
-const openai = new OpenAI({
-  apiKey: apiKey,
-  dangerouslyAllowBrowser: true,
-});
+// Lore AI Service - uses backend proxy to keep API keys secure
+const API_BASE = "/api";
 
 // Creates an epic backstory for an NFT character
 export const generateLore = async (nftData) => {
@@ -102,17 +95,17 @@ export const generateLore = async (nftData) => {
   `;
 
   try {
-    if (!apiKey) throw new Error("Missing AI API Key");
-
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
-      model: "gpt-4o",
-      response_format: { type: "json_object" },
-      max_tokens: 1500, // Allow for longer responses
+    const response = await fetch(`${API_BASE}/lore`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
     });
 
-    const content = completion.choices[0].message.content;
-    return JSON.parse(content);
+    if (!response.ok) {
+      throw new Error("Lore generation failed");
+    }
+
+    return await response.json();
   } catch {
     // Enhanced mock fallback with more content
     const fallbackTraits =
@@ -143,16 +136,20 @@ Will you be the one to claim their loyalty? Will you be the commander worthy of 
 // Quick trait explanation (one-liner)
 export const explainTrait = async (trait, collection) => {
   try {
-    if (!apiKey) throw new Error("Missing AI API Key");
-
     const prompt = `Explain the significance of the NFT trait "${trait.trait_type}: ${trait.value}" in the context of the ${collection} collection. Keep it under 50 words.`;
 
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
-      model: "gpt-4o", // or gpt-3.5-turbo
+    const response = await fetch(`${API_BASE}/lore`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: `${prompt}\n\nReturn JSON: {"explanation": "your explanation here"}`,
+      }),
     });
 
-    return completion.choices[0].message.content;
+    if (!response.ok) throw new Error("API error");
+
+    const data = await response.json();
+    return data.explanation;
   } catch {
     return `The ${trait.value} trait is a distinctive feature in the ${collection} collection, adding to its visual identity and rarity.`;
   }
@@ -161,22 +158,25 @@ export const explainTrait = async (trait, collection) => {
 // Rarity breakdown for collectors
 export const analyzeRarity = async (traits, rarityScore) => {
   try {
-    if (!apiKey) throw new Error("Missing AI API Key");
-
     const prompt = `
       Analyze this NFT's rarity.
       Rarity Score: ${rarityScore}
       Traits: ${JSON.stringify(traits)}
       
       Provide a 2-sentence analysis of its collectibility.
+      Return JSON: {"analysis": "your analysis here"}
     `;
 
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
-      model: "gpt-4o",
+    const response = await fetch(`${API_BASE}/lore`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
     });
 
-    return completion.choices[0].message.content;
+    if (!response.ok) throw new Error("API error");
+
+    const data = await response.json();
+    return data.analysis;
   } catch {
     return `With a score of ${rarityScore}, this NFT has a unique combination of traits that may appeal to specific collectors.`;
   }
@@ -185,7 +185,7 @@ export const analyzeRarity = async (traits, rarityScore) => {
 // Start a new chat session with the NFT
 export const startChatSession = async (nftData) => {
   // Store conversation history in closure
-  const history = [
+  const messages = [
     {
       role: "system",
       content: `You are ${nftData.name}, a living NFT from ${nftData.collection}. 
@@ -196,12 +196,9 @@ export const startChatSession = async (nftData) => {
   ];
 
   return {
-    history,
+    messages,
     sendMessage: async (userMessage) => {
-      return sendMessage(
-        { history }, // Pass context mimicking the session
-        userMessage,
-      );
+      return sendMessage({ messages }, userMessage);
     },
   };
 };
@@ -209,52 +206,49 @@ export const startChatSession = async (nftData) => {
 // Send a message and get response
 export const sendMessage = async (chatSession, message) => {
   try {
-    if (!apiKey) throw new Error("Missing AI API Key");
+    chatSession.messages.push({ role: "user", content: message });
 
-    chatSession.history.push({ role: "user", content: message });
-
-    const completion = await openai.chat.completions.create({
-      messages: chatSession.history,
-      model: "gpt-4o",
-      max_tokens: 150,
+    const response = await fetch(`${API_BASE}/lore/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: chatSession.messages,
+        maxTokens: 150,
+      }),
     });
 
-    const reply = completion.choices[0].message.content;
-    chatSession.history.push({ role: "assistant", content: reply });
-    return reply;
+    if (!response.ok) throw new Error("Chat API error");
+
+    const data = await response.json();
+    chatSession.messages.push({ role: "assistant", content: data.reply });
+    return data.reply;
   } catch (error) {
     console.warn("AI Chat Error:", error);
-
-    // Specific check for 429 Rate Limit
-    if (error?.status === 429 || error?.code === "insufficient_quota") {
-      return "*Glitch* Network busy (Rate Limit Exceeded). Please wait a moment.";
-    }
-
-    // Generic error fallback
-    const errorMessage = error?.message || "Connection failed";
-    return `*Glitch* Connection interrupted: ${errorMessage}. Please try again.`;
+    return `*Glitch* Connection interrupted. Please try again.`;
   }
 };
 
 // Summarize why this NFT is special
 export const generateTraitAnalysis = async (nft, rarestTraits) => {
   try {
-    if (!apiKey) throw new Error("Missing AI API Key");
-
     const prompt = `
       Summarize why this NFT is special based on these rare traits:
       ${JSON.stringify(rarestTraits)}
       NFT: ${nft.name} (${nft.collection})
       
-      1 sentence.
+      Return JSON: {"summary": "1 sentence summary"}
     `;
 
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
-      model: "gpt-4o",
+    const response = await fetch(`${API_BASE}/lore`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
     });
 
-    return completion.choices[0].message.content;
+    if (!response.ok) throw new Error("API error");
+
+    const data = await response.json();
+    return data.summary;
   } catch {
     return null;
   }
@@ -270,8 +264,6 @@ export const generateBuyRecommendation = async (data) => {
   if (floorPrice < 0.1) score -= 10;
 
   try {
-    if (!apiKey) throw new Error("Missing AI API Key");
-
     const prompt = `
       Evaluate this NFT as an investment for a beginner.
       Name: ${name}
@@ -287,13 +279,15 @@ export const generateBuyRecommendation = async (data) => {
       }
     `;
 
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
-      model: "gpt-4o",
-      response_format: { type: "json_object" },
+    const response = await fetch(`${API_BASE}/lore`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
     });
 
-    return JSON.parse(completion.choices[0].message.content);
+    if (!response.ok) throw new Error("API error");
+
+    return await response.json();
   } catch {
     return {
       score: score,

@@ -1,26 +1,5 @@
-import OpenAI from "openai";
-
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-
-// Initialize AI client
-const openai = new OpenAI({
-  apiKey: apiKey,
-  dangerouslyAllowBrowser: true,
-});
-// Helper for generating content
-const generateContent = async (prompt) => {
-  if (!apiKey) throw new Error("Missing AI API Key");
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: prompt }],
-    model: "gpt-4o",
-    response_format: { type: "json_object" },
-  });
-  return {
-    response: {
-      text: () => completion.choices[0].message.content,
-    },
-  };
-};
+// Deep Analysis Service - uses backend proxy to keep API keys secure
+const API_BASE = "/api";
 
 /**
  * Fallback analysis when API fails (Mock Data Generator)
@@ -171,16 +150,6 @@ const getDefaultAnalysis = (nftData, collectionData) => {
 
 /**
  * Generate comprehensive deep analysis for an NFT
- * This provides research-grade insights by analyzing:
- * - Trait comparison against collection
- * - Price justification (why cheap/expensive)
- * - What makes this NFT unique
- * - Collection context and popularity
- * - Creator background
- *
- * @param {Object} nftData - Complete NFT data with traits, pricing, metadata
- * @param {Object} collectionData - Collection stats including floor, volume, total supply
- * @returns {Promise<Object>} Deep analysis result
  */
 export const generateDeepAnalysis = async (
   nftData,
@@ -339,12 +308,21 @@ export const generateDeepAnalysis = async (
   `;
 
   try {
-    const result = await generateContent(prompt);
-    const content = result.response.text();
+    const response = await fetch(`${API_BASE}/analysis`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Analysis API error");
+    }
+
+    const result = await response.json();
+    const content = result.content;
 
     // Parse the JSON response
     try {
-      // Clean up any markdown code blocks if present
       const cleanedContent = content
         .replace(/```json\s*/g, "")
         .replace(/```\s*/g, "")
@@ -381,12 +359,10 @@ export const generateDeepAnalysis = async (
       return analysis;
     } catch (parseError) {
       console.error("Failed to parse AI response:", parseError, content);
-      // Return a structured error response
       return getDefaultAnalysis(nftData, collectionData);
     }
   } catch (error) {
     console.error("Deep analysis API error:", error);
-    // Use the rich mock fallback
     return getDefaultAnalysis(nftData, collectionData);
   }
 };

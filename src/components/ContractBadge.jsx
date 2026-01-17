@@ -13,11 +13,9 @@ const ContractBadge = ({ contractAddress }) => {
     const checkVerification = async () => {
       try {
         // Etherscan free API to check source code (verified contracts have source)
-        const apiKey = import.meta.env.VITE_ETHERSCAN_API_KEY || "";
-        const apiParam = apiKey ? `&apikey=${apiKey}` : "";
-
+        // Use backend proxy to keep API key hidden
         const response = await fetch(
-          `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}${apiParam}`
+          `/api/etherscan?module=contract&action=getsourcecode&address=${contractAddress}`,
         );
         const data = await response.json();
 
