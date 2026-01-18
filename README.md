@@ -1,5 +1,6 @@
 # LoreMint
 ![LoreMint Banner](src/assets/banner.png)
+- Devpost Submission : https://devpost.com/software/loremint-2lf3y1
 
 **LoreMint** is a next-generation NFT analytics and storytelling platform that bridges the gap between on chain data and creative lore. By leveraging **Alchemy's blockchain data** and **generative capabilities of gemini 2.5 and openAI GPT 4**, LoreMint transforms static NFT metadata into immersive narratives while providing deep financial insights.
 
