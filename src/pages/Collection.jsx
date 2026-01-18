@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getBasicNFTMetadata } from "../services/alchemy";
 import "./Collection.css";
-import NFTCard from "../components/NFTCard";
+import NFTCard from "../components/common/NFTCard";
 
 // Default token IDs if none provided
 const DEFAULT_TOKENS = [
@@ -54,7 +54,7 @@ const Collection = () => {
             contract: contractAddress,
           };
         } catch (err) {
-          console.log(`Failed to fetch token ${tokenId}:`, err);
+          console.warn(`Failed to fetch token ${tokenId}:`, err);
           return {
             tokenId,
             name: `#${tokenId}`,

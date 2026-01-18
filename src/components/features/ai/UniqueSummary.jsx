@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { generateTraitAnalysis } from "../services/loreAI";
+import { generateTraitAnalysis } from "../../../services/loreAI";
 import "./UniqueSummary.css";
 
 /**

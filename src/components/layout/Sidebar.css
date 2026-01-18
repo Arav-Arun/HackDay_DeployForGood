@@ -17,7 +17,7 @@
 .sidebar-logo {
   width: 48px;
   height: 48px;
-  background: var(--gradient-lavender);
+  background: transparent;
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -25,6 +25,7 @@
   margin-bottom: var(--spacing-8);
   cursor: pointer;
   transition: transform var(--transition-fast);
+  padding: 0;
 }
 
 .sidebar-logo:hover {
@@ -123,9 +124,56 @@
   color: var(--color-text-dark);
 }
 
-/* Mobile: Hide sidebar */
+/* Mobile: Bottom navigation bar */
 @media (max-width: 768px) {
   .sidebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 72px;
+    flex-direction: row;
+    padding: var(--spacing-2) var(--spacing-6);
+    border-right: none;
+    border-top: 1px solid var(--color-border-subtle);
+    justify-content: space-evenly;
+    align-items: center;
+    background: var(--color-bg-dark);
+    backdrop-filter: blur(20px);
+    z-index: var(--z-fixed);
+  }
+
+  .sidebar-logo {
     display: none;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: var(--spacing-4);
+    flex: 0;
+    align-items: center;
+  }
+
+  .sidebar-bottom {
+    flex-direction: row;
+    margin-top: 0;
+    align-items: center;
+  }
+
+  .nav-item {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sidebar-user {
+    margin-top: 0;
+    margin-left: var(--spacing-2);
+  }
+
+  .avatar-trigger {
+    width: 42px;
+    height: 42px;
   }
 }

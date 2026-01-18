@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getTransferHistory, resolveENS } from "../services/alchemy";
+import { getTransferHistory, resolveENS } from "../../../services/alchemy";
 import "./TransferHistory.css";
 
 const TransferHistory = ({ contractAddress, tokenId }) => {
@@ -130,11 +130,11 @@ const TransferHistory = ({ contractAddress, tokenId }) => {
             const nextTransfer = transfers[index - 1]; // previous in array = next in time
             const holdingDuration = getHoldingDuration(
               transfer.timestamp,
-              nextTransfer?.timestamp
+              nextTransfer?.timestamp,
             );
             const daysHeld = getDaysFromDuration(
               transfer.timestamp,
-              nextTransfer?.timestamp
+              nextTransfer?.timestamp,
             );
             const holderType = getHolderType(daysHeld, index, transfers.length);
 

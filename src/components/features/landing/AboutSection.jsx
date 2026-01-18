@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { generateCreatorBio } from "../../../services/loreAI";
 import "./AboutSection.css";
 
 /**
@@ -7,6 +8,25 @@ import "./AboutSection.css";
  */
 const AboutSection = ({ nft, contractAddress }) => {
   const [activeTab, setActiveTab] = useState("nft");
+  const [creatorBio, setCreatorBio] = useState(null);
+  const [loadingBio, setLoadingBio] = useState(false);
+
+  // Fetch creator bio when tab is selected
+  useEffect(() => {
+    const fetchCreatorBio = async () => {
+      if (activeTab === "creator" && !creatorBio && nft) {
+        setLoadingBio(true);
+        const collectionName =
+          nft?.contractMetadata?.name ||
+          nft?.collection ||
+          "Unknown Collection";
+        const bio = await generateCreatorBio(collectionName);
+        setCreatorBio(bio);
+        setLoadingBio(false);
+      }
+    };
+    fetchCreatorBio();
+  }, [activeTab, creatorBio, nft]);
 
   const tabs = [
     { id: "nft", label: "About NFT" },
@@ -246,9 +266,58 @@ const AboutSection = ({ nft, contractAddress }) => {
         {/* About Creator Tab */}
         {activeTab === "creator" && (
           <div className="tab-panel">
+            {/* AI-Generated Artist Biography */}
+            {loadingBio ? (
+              <div className="shimmer-wrapper" style={{ height: "200px" }}>
+                <div className="shimmer"></div>
+              </div>
+            ) : creatorBio ? (
+              <div className="creator-bio-section">
+                <div className="creator-card">
+                  <div className="creator-avatar-container">
+                    <div className="creator-avatar-placeholder">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="creator-info">
+                    <h4 className="creator-label">{creatorBio.name}</h4>
+                    <p className="creator-note">{creatorBio.background}</p>
+                  </div>
+                </div>
+
+                <div className="about-description">
+                  <h4 className="about-subtitle">Artistic Style</h4>
+                  <p className="about-text">{creatorBio.style}</p>
+                </div>
+
+                <div className="about-description">
+                  <h4 className="about-subtitle">Achievements</h4>
+                  <p className="about-text">{creatorBio.achievements}</p>
+                </div>
+
+                <div className="about-description">
+                  <h4 className="about-subtitle">Collection Story</h4>
+                  <p className="about-text">{creatorBio.collectionStory}</p>
+                </div>
+              </div>
+            ) : null}
+
             {/* Contract Deployer */}
-            {contractMeta?.contractDeployer ? (
-              <div className="creator-card">
+            {contractMeta?.contractDeployer && (
+              <div
+                className="creator-card"
+                style={{ marginTop: "var(--spacing-4)" }}
+              >
                 <div className="creator-avatar-container">
                   <div className="creator-avatar-placeholder">
                     <svg
@@ -280,7 +349,10 @@ const AboutSection = ({ nft, contractAddress }) => {
                   </p>
                 </div>
               </div>
-            ) : (
+            )}
+
+            {/* No Creator Data Message (fallback) */}
+            {!contractMeta?.contractDeployer && !creatorBio && !loadingBio && (
               <div className="no-data-message">
                 <svg
                   className="no-data-icon-svg"

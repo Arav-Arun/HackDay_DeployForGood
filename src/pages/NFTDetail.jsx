@@ -2,22 +2,22 @@ import React, { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAccount } from "wagmi";
 import { useNFTMetadata } from "../hooks/useNFTData";
-import TraitCard from "../components/TraitCard";
-import RarityMeter from "../components/RarityMeter";
-import LoreGenerator from "../components/LoreGenerator";
-import FloorPrice from "../components/FloorPrice";
-import TransferHistory from "../components/TransferHistory";
-import DeepAnalysis from "../components/DeepAnalysis";
-import LivingNFTChat from "../components/LivingNFTChat";
-import SaleHistory from "../components/SaleHistory";
-import SpamWarning from "../components/SpamWarning";
+import TraitCard from "../components/common/TraitCard";
+import RarityMeter from "../components/features/nft/RarityMeter";
+import LoreGenerator from "../components/features/ai/LoreGenerator";
+import FloorPrice from "../components/features/nft/FloorPrice";
+import TransferHistory from "../components/features/nft/TransferHistory";
+import DeepAnalysis from "../components/features/ai/DeepAnalysis";
+import LivingNFTChat from "../components/features/ai/LivingNFTChat";
+import SaleHistory from "../components/features/nft/SaleHistory";
+import SpamWarning from "../components/common/SpamWarning";
 
-import ContractBadge from "../components/ContractBadge";
-import UniqueSummary from "../components/UniqueSummary";
-import RiskMeter2 from "../components/RiskMeter2";
-import BuyScore from "../components/BuyScore";
-import Tooltip from "../components/Tooltip";
-import AboutSection from "../components/AboutSection";
+import ContractBadge from "../components/common/ContractBadge";
+import UniqueSummary from "../components/features/ai/UniqueSummary";
+import RiskMeter2 from "../components/features/nft/RiskMeter2";
+import BuyScore from "../components/features/nft/BuyScore";
+import Tooltip from "../components/common/Tooltip";
+import AboutSection from "../components/features/landing/AboutSection";
 import "./NFTDetail.css";
 
 // Default avatar SVG

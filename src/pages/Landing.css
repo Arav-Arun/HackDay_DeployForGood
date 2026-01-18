@@ -203,27 +203,27 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-2);
-  padding: var(--spacing-4) var(--spacing-6);
-  background: var(--color-surface-glass-dark);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-full);
-  color: var(--color-text-primary);
-  font-weight: 600;
+  padding: var(--spacing-4) var(--spacing-8);
+  background: linear-gradient(135deg, #c9a962 0%, #d4b76a 100%);
+  border: none;
+  border-radius: var(--radius-xl);
+  color: var(--color-text-dark);
+  font-weight: 700;
   font-size: var(--text-base);
   cursor: pointer;
   transition: all var(--transition-base);
-  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 4px 14px rgba(201, 169, 98, 0.3);
 }
 
 .btn-glass:hover {
-  background: var(--color-bg-tertiary);
-  border-color: var(--color-accent-lavender);
+  background: linear-gradient(135deg, #d4b76a 0%, #e0c87a 100%);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 6px 20px rgba(201, 169, 98, 0.4);
 }
 
 .btn-glass svg {
   transition: transform var(--transition-fast);
+  stroke: var(--color-text-dark);
 }
 
 .btn-glass:hover svg {
@@ -660,12 +660,13 @@
   .features-grid {
     grid-template-columns: 1fr;
     max-width: 600px;
+    gap: var(--spacing-5);
   }
 
   .stats-bar {
     flex-wrap: wrap;
-    gap: var(--spacing-6);
-    padding: var(--spacing-6);
+    gap: var(--spacing-4);
+    padding: var(--spacing-5) var(--spacing-6);
   }
 
   .stat-divider {
@@ -679,45 +680,165 @@
   .hero-visual {
     height: auto;
   }
+
+  .showcase-main {
+    width: 280px;
+    height: 280px;
+  }
 }
 
 @media (max-width: 640px) {
   .landing-page {
-    padding: var(--spacing-6) 0;
+    padding: var(--spacing-4) 0 var(--spacing-16);
   }
 
   .hero-section {
-    padding: var(--spacing-8) 0 var(--spacing-8);
+    padding: var(--spacing-10) 0 var(--spacing-8);
+  }
+
+  .hero-content {
+    margin-bottom: var(--spacing-10);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+    margin-bottom: var(--spacing-5);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-8);
+    padding: 0 var(--spacing-2);
+  }
+
+  .cta-container {
+    flex-direction: column;
+    gap: var(--spacing-3);
+    width: 100%;
+    padding: 0 var(--spacing-4);
+  }
+
+  .btn-glass {
+    width: 100%;
+    justify-content: center;
+    padding: var(--spacing-4);
+  }
+
+  .showcase-main {
+    width: 240px;
+    height: 240px;
+  }
+
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: var(--spacing-4);
+    gap: var(--spacing-3);
+    margin: var(--spacing-8) auto;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: var(--text-base);
+    white-space: nowrap;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+    white-space: nowrap;
   }
 
   .features-section {
-    padding: var(--spacing-10) 0;
+    padding: var(--spacing-8) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .section-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-2);
+    padding: 0 var(--spacing-2);
+  }
+
+  .section-subtitle {
+    font-size: var(--text-sm);
+    padding: 0 var(--spacing-4);
   }
 
   .feature-card {
-    padding: var(--spacing-4);
+    padding: var(--spacing-5);
   }
 
   .feature-icon {
     width: 48px;
     height: 48px;
-    margin-bottom: var(--spacing-3);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .feature-icon svg {
+    width: 24px;
+    height: 24px;
   }
 
   .feature-card h3 {
     font-size: var(--text-lg);
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-3);
   }
 
   .feature-card p {
     font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
   }
 
-  .hero-subtitle {
+  .how-section {
+    padding: var(--spacing-12) 0;
+  }
+
+  .step-item {
+    padding: var(--spacing-5);
+    gap: var(--spacing-4);
+  }
+
+  .step-number {
+    font-size: var(--text-3xl);
+    min-width: 60px;
+  }
+
+  .step-content h3 {
     font-size: var(--text-lg);
   }
 
-  .cta-container {
-    flex-direction: column;
+  .step-content p {
+    font-size: var(--text-sm);
+  }
+
+  .cta-section {
+    padding: var(--spacing-8) var(--spacing-6);
+    margin: var(--spacing-12) 0;
+  }
+
+  .cta-section h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .cta-section p {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-6);
+  }
+
+  .btn-large {
+    width: 100%;
+    padding: var(--spacing-4);
+    font-size: var(--text-base);
+  }
+
+  .landing-footer {
+    padding: var(--spacing-8) 0;
+    font-size: var(--text-xs);
   }
 }

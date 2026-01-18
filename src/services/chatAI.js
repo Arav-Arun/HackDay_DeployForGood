@@ -38,13 +38,6 @@ export const startChatSession = async (nftData) => {
     ambientSound = "popping bubbles and laughter";
   }
 
-  // Rarity affects their social status
-  let socialStatus = "The Common Districts";
-  if (nftData.rarityRank && nftData.rarityRank < 1000)
-    socialStatus = "The VIP Lounge (Exclusive, quiet, golden)";
-  if (nftData.rarityRank && nftData.rarityRank < 100)
-    socialStatus = "The God-Tier Penthouse (Looking down on everyone)";
-
   const systemPrompt = `
     You ARE ${name} from ${collection}. Stay in character always.
     

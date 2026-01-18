@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { generateBuyRecommendation } from "../services/loreAI";
+import { generateBuyRecommendation } from "../../../services/loreAI";
 import "./BuyScore.css";
 
 /**

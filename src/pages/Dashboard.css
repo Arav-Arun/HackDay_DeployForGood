@@ -1,17 +1,18 @@
 .dashboard-page {
   min-height: 100vh;
-  padding: calc(80px + var(--spacing-8)) 0 var(--spacing-8);
+  padding: var(--spacing-8) 0;
 }
 
 /* Dashboard Header */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-10);
-  padding: var(--spacing-8) 0;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-8);
+  padding-bottom: var(--spacing-6);
+  border-bottom: 1px solid var(--color-border-subtle);
   flex-wrap: wrap;
-  gap: var(--spacing-6);
+  gap: var(--spacing-4);
 }
 
 .dashboard-title {
@@ -26,6 +27,17 @@
   color: var(--color-text-tertiary);
   font-family: var(--font-mono);
   letter-spacing: var(--tracking-wide);
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.nft-count {
+  margin-left: var(--spacing-4);
+  opacity: 0.7;
 }
 
 /* Filter Bar */
@@ -79,6 +91,14 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--spacing-6);
   margin-top: var(--spacing-8);
+}
+
+.nft-loading-card {
+  height: 400px;
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-tertiary);
 }
 
 /* NFT Card Styles */
@@ -259,16 +279,62 @@
   font-weight: 600;
 }
 
+/* Error Banner */
+.error-banner {
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-2xl);
+  text-align: center;
+}
+
+.error-banner .error-message {
+  color: rgb(248, 113, 113);
+  margin: 0 0 var(--spacing-4);
+  font-size: var(--text-base);
+}
+
+.error-banner .btn {
+  margin: 0 auto;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .dashboard-page {
+    padding: var(--spacing-4) 0 var(--spacing-16);
+  }
+  
   .dashboard-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+  }
+  
+  .dashboard-header > div:last-child {
+    width: 100%;
+    display: flex;
+    gap: var(--spacing-3);
+  }
+  
+  .dashboard-header > div:last-child button {
+    flex: 1;
+  }
+
+  .dashboard-title {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .dashboard-subtitle {
+    font-size: var(--text-sm);
   }
 
   .nft-grid,
   .loading-grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-4);
   }
 
   .filter-bar {
@@ -276,6 +342,7 @@
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    padding: var(--spacing-2);
   }
 
   .filter-bar::-webkit-scrollbar {
@@ -284,6 +351,8 @@
 
   .filter-btn {
     white-space: nowrap;
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--text-sm);
   }
 }
 

@@ -297,6 +297,53 @@ export const generateBuyRecommendation = async (data) => {
   }
 };
 
+// Generate artist/creator biography
+export const generateCreatorBio = async (collectionName) => {
+  try {
+    const prompt = `
+      Research and provide information about the creator/artist behind the NFT collection "${collectionName}".
+      
+      Include:
+      - Their real name or pseudonym (if known)
+      - Background (where they're from, their artistic journey)
+      - Artistic style and influences
+      - Notable achievements or recognitions
+      - The story behind creating ${collectionName}
+      
+      If the collection is well-known (like BAYC, Azuki, CryptoPunks, etc.), provide actual factual information.
+      If unknown, provide a realistic "indie digital artist" profile.
+      
+      Return JSON:
+      {
+        "name": "Artist name or pseudonym",
+        "background": "2-3 sentences about their background",
+        "style": "1-2 sentences about their artistic style",
+        "achievements": "1-2 notable achievements or facts",
+        "collectionStory": "1-2 sentences about why they created this collection"
+      }
+    `;
+
+    const response = await fetch(`${API_BASE}/lore`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+
+    if (!response.ok) throw new Error("API error");
+    return await response.json();
+  } catch {
+    return {
+      name: "Anonymous Artist",
+      background: `The creator behind ${collectionName} prefers to remain anonymous, a common practice in the NFT space where the art speaks for itself.`,
+      style:
+        "Their work blends digital aesthetics with unique visual storytelling.",
+      achievements: `Successfully launched ${collectionName} on the Ethereum blockchain.`,
+      collectionStory:
+        "This collection represents a vision of digital art ownership and community building.",
+    };
+  }
+};
+
 export default {
   generateLore,
   explainTrait,
@@ -305,4 +352,5 @@ export default {
   sendMessage,
   generateTraitAnalysis,
   generateBuyRecommendation,
+  generateCreatorBio,
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAI } from "../hooks/useAI";
+import { useAI } from "../../../hooks/useAI";
 import "./LoreGenerator.css";
 
 const LoreGenerator = ({ nft }) => {

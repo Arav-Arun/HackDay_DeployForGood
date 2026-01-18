@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getFloorPrice } from "../services/alchemy";
+import { getFloorPrice } from "../../../services/alchemy";
 import "./FloorPrice.css";
 
 const FloorPrice = ({ contractAddress, compact = false }) => {
@@ -16,7 +16,7 @@ const FloorPrice = ({ contractAddress, compact = false }) => {
         const [floorResult, priceResponse] = await Promise.all([
           getFloorPrice(contractAddress),
           fetch(
-            "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,inr"
+            "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,inr",
           ),
         ]);
 

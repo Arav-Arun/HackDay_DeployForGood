@@ -3,7 +3,7 @@ import {
   isInWatchlist,
   addToWatchlist,
   removeFromWatchlist,
-} from "../services/watchlist";
+} from "../../services/watchlist";
 import "./WatchlistButton.css";
 
 /**
@@ -14,7 +14,7 @@ const WatchlistButton = ({ nft }) => {
   // Initialize state with lazy evaluation to check localStorage
   const [saved, setSaved] = useState(
     () =>
-      nft?.contract && nft?.tokenId && isInWatchlist(nft.contract, nft.tokenId)
+      nft?.contract && nft?.tokenId && isInWatchlist(nft.contract, nft.tokenId),
   );
 
   const handleToggle = () => {

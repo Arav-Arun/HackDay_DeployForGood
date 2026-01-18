@@ -1,7 +1,6 @@
-# LoreMint 
+# LoreMint
 
 **LoreMint** is a next-generation NFT analytics and storytelling platform that bridges the gap between on-chain data and creative lore. By leveraging **Alchemy's blockchain data** and **OpenAI's generative capabilities**, LoreMint transforms static NFT metadata into immersive narratives while providing deep financial insights.
-
 
 ## Key Features
 
@@ -14,7 +13,7 @@
 ### AI-Powered Lore Generation
 
 - **Generative Backstory**: Creates unique, character-driven stories for every NFT based on its specific traits.
-- **Trait Explanation**: contextualizes obscure attributes (e.g., "Why is 'Golden Fur' valuable?").
+- **Trait Explanation**: Contextualizes obscure attributes (e.g., "Why is 'Golden Fur' valuable?").
 - **Interactive Storytelling**: Brings static JPEGs to life with rich, immersive text.
 
 ### Premium User Experience
@@ -91,7 +90,7 @@
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -101,7 +100,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
 ---
 
-Built with ❤️ by Arav Arun
+Built by Team Deploy For Good

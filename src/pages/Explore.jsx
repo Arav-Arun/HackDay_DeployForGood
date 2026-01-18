@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Explore.css";
+import azukiCover from "../assets/azuki-cover.png";
+import baycCover from "../assets/bayc-cover.png";
+import doodlesCover from "../assets/doodles-cover.png";
+import artblocksCover from "../assets/artblocks-cover.png";
+import autoglyphsCover from "../assets/autoglyphs_banner.png";
+import coolcatsCover from "../assets/coolcats-cover.png";
 
 // 6 Featured Collections - curated for demo purposes
 const FEATURED_COLLECTIONS = [
@@ -9,7 +15,7 @@ const FEATURED_COLLECTIONS = [
     name: "Azuki",
     contract: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
     description: "A brand for the metaverse built by the community",
-    image: "/azuki-cover.png",
+    image: azukiCover,
     tokenIds: [
       "1",
       "2",
@@ -35,7 +41,7 @@ const FEATURED_COLLECTIONS = [
     name: "Bored Ape Yacht Club",
     contract: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
     description: "10,000 unique Bored Ape NFTs living on Ethereum",
-    image: "/bayc-cover.png",
+    image: baycCover,
     tokenIds: [
       "1",
       "2",
@@ -61,7 +67,7 @@ const FEATURED_COLLECTIONS = [
     name: "Doodles",
     contract: "0x8a90CAb2b38dba80c64b7734e58Ee1dB38B8992e",
     description: "Colorful, community-driven collectibles by Burnt Toast",
-    image: "/doodles-cover.png",
+    image: doodlesCover,
     tokenIds: [
       "1",
       "2",
@@ -87,7 +93,7 @@ const FEATURED_COLLECTIONS = [
     name: "Art Blocks Curated",
     contract: "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
     description: "Premium generative art on the Ethereum blockchain",
-    image: "/artblocks-cover.png",
+    image: artblocksCover,
     tokenIds: [
       "0",
       "1000000",
@@ -113,7 +119,7 @@ const FEATURED_COLLECTIONS = [
     name: "Autoglyphs",
     contract: "0xd4e4078ca3495DE5B1d4dB434BEbc5a986197782",
     description: "The first on-chain generative art by Larva Labs",
-    image: "/autoglyphs_banner.png",
+    image: autoglyphsCover,
     tokenIds: [
       "1",
       "2",
@@ -139,7 +145,7 @@ const FEATURED_COLLECTIONS = [
     name: "Cool Cats",
     contract: "0x1A92f7381B9F03921564a437210bB9396471050C",
     description: "9,999 randomly generated Cool Cats",
-    image: "/coolcats-cover.png",
+    image: coolcatsCover,
     tokenIds: [
       "1",
       "2",

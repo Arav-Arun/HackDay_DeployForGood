@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getNftSales, checkSpamStatus } from "../services/alchemy";
+import { getNftSales, checkSpamStatus } from "../../../services/alchemy";
 import "./RiskMeter2.css";
 
 /**

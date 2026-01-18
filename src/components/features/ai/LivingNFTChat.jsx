@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { startChatSession, sendMessage } from "../services/chatAI";
+import { startChatSession, sendMessage } from "../../../services/chatAI";
 import "./LivingNFTChat.css";
 
 const LivingNFTChat = ({ nft }) => {

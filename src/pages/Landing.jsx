@@ -46,7 +46,7 @@ const Landing = () => {
               images[`${nft.contract}-${nft.tokenId}`] = metadata.image;
             }
           } catch (err) {
-            console.log(`Failed to fetch ${nft.name}:`, err);
+            console.warn(`Failed to fetch ${nft.name}:`, err);
           }
         }),
       );
@@ -131,11 +131,6 @@ const Landing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="hero-badge">
-              <span className="badge-dot" />
-              AI-Powered NFT Intelligence
-            </div>
-
             <h1 className="hero-title">
               <span className="title-line">Decode the</span>
               <span className="title-accent">True Value</span>
@@ -262,22 +257,22 @@ const Landing = () => {
         >
           <div className="stat-item">
             <span className="stat-number">10K+</span>
-            <span className="stat-label">Collections Analyzed</span>
+            <span className="stat-label">Collections</span>
           </div>
           <div className="stat-divider" />
           <div className="stat-item">
             <span className="stat-number">Real-Time</span>
-            <span className="stat-label">On-Chain Data</span>
+            <span className="stat-label">On-Chain</span>
           </div>
           <div className="stat-divider" />
           <div className="stat-item">
             <span className="stat-number">AI</span>
-            <span className="stat-label">AI Analysis</span>
+            <span className="stat-label">Analysis</span>
           </div>
           <div className="stat-divider" />
           <div className="stat-item">
             <span className="stat-number">100%</span>
-            <span className="stat-label">Verified Sources</span>
+            <span className="stat-label">Verified</span>
           </div>
         </motion.div>
 

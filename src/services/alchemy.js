@@ -33,6 +33,9 @@ const stripIpfsPrefix = (cidOrUrl) => {
 
 /**
  * Extract best available image URL from NFT data
+ * Prioritizes cached URLs and tries to handle IPFS/Gateway logic
+ * @param {Object} nft - The raw NFT object from Alchemy
+ * @returns {string|null} The resolved image URL or null
  */
 const extractImageUrl = (nft) => {
   // Try multiple sources for image in order of preference
@@ -72,6 +75,8 @@ const extractImageUrl = (nft) => {
 
 /**
  * Extract low-res thumbnail if available
+ * @param {Object} nft - The raw NFT object
+ * @returns {string|null} Thumbnail URL or falls back to main image
  */
 const extractThumbnailUrl = (nft) => {
   const sources = [
@@ -505,18 +510,28 @@ export const getNftSales = async (contractAddress, tokenId) => {
       limit: 10, // Last 10 sales
     });
 
-    return response.nftSales.map((sale) => ({
-      marketplace: sale.marketplace || "Unknown",
-      price: sale.sellerFee?.amount
-        ? parseFloat(sale.sellerFee.amount) / 1e18
-        : null,
-      priceSymbol: sale.sellerFee?.symbol || "ETH",
-      buyer: sale.buyerAddress,
-      seller: sale.sellerAddress,
-      blockNumber: sale.blockNumber,
-      transactionHash: sale.transactionHash,
-      timestamp: sale.timestamp,
-    }));
+    return response.nftSales.map((sale) => {
+      // Price can be in different fields depending on the marketplace
+      let price = null;
+      if (sale.taker?.amount) {
+        price = parseFloat(sale.taker.amount) / 1e18;
+      } else if (sale.sellerFee?.amount) {
+        price = parseFloat(sale.sellerFee.amount) / 1e18;
+      } else if (sale.protocolFee?.amount) {
+        price = parseFloat(sale.protocolFee.amount) / 1e18;
+      }
+
+      return {
+        marketplace: sale.marketplace || "Unknown",
+        price,
+        priceSymbol: sale.taker?.symbol || sale.sellerFee?.symbol || "ETH",
+        buyer: sale.buyerAddress,
+        seller: sale.sellerAddress,
+        blockNumber: sale.blockNumber,
+        transactionHash: sale.transactionHash,
+        timestamp: sale.bundleIndex, // bundleIndex often used as timestamp proxy
+      };
+    });
   } catch (error) {
     console.error("Error fetching NFT sales:", error);
     return [];

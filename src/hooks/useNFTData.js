@@ -47,7 +47,7 @@ export const useNFTData = (address, enabled = true) => {
     };
 
     fetchNFTs();
-  }, [address, enabled]);
+  }, [address, enabled, chainId]);
 
   const refetch = async () => {
     if (!address) return;

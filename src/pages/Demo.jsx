@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import NFTCard from "../components/NFTCard";
+import NFTCard from "../components/common/NFTCard";
 import "./Demo.css";
 
 // Demo NFTs with real working images

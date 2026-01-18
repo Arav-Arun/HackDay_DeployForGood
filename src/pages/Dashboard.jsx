@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAccount, useDisconnect } from "wagmi";
 import { useNavigate } from "react-router-dom";
 import { useNFTData } from "../hooks/useNFTData";
-import NFTCard from "../components/NFTCard";
+import NFTCard from "../components/common/NFTCard";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -57,17 +57,17 @@ const Dashboard = () => {
             <p className="dashboard-subtitle">
               {address &&
                 `${address.substring(0, 6)}...${address.substring(
-                  address.length - 4
+                  address.length - 4,
                 )}`}
               {!loading && nfts.length > 0 && (
-                <span style={{ marginLeft: "1rem", opacity: 0.7 }}>
+                <span className="nft-count">
                   • {nfts.length} NFT{nfts.length !== 1 ? "s" : ""}
                 </span>
               )}
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: "0.75rem" }}>
+          <div className="dashboard-actions">
             <button
               onClick={refetch}
               className="btn btn-secondary"
@@ -111,34 +111,9 @@ const Dashboard = () => {
 
         {/* Error State */}
         {error && (
-          <div
-            className="error-banner glass-card"
-            style={{
-              padding: "1.5rem",
-              marginBottom: "2rem",
-              background: "rgba(239, 68, 68, 0.1)",
-              border: "1px solid rgba(239, 68, 68, 0.3)",
-            }}
-          >
-            <p
-              style={{
-                color: "rgb(248, 113, 113)",
-                textAlign: "center",
-                margin: 0,
-              }}
-            >
-              {error}
-            </p>
-            <button
-              onClick={refetch}
-              className="btn btn-secondary"
-              style={{
-                marginTop: "1rem",
-                display: "block",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-            >
+          <div className="error-banner">
+            <p className="error-message">{error}</p>
+            <button onClick={refetch} className="btn btn-secondary">
               Try Again
             </button>
           </div>
@@ -148,11 +123,7 @@ const Dashboard = () => {
         {loading ? (
           <div className="loading-grid">
             {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="shimmer-wrapper"
-                style={{ height: "400px", borderRadius: "var(--radius-lg)" }}
-              >
+              <div key={i} className="nft-loading-card">
                 <div className="shimmer"></div>
               </div>
             ))}

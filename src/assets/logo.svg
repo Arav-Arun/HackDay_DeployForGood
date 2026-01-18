@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="512" height="512" rx="128" fill="url(#bg_gradient)"/>
+
+<g transform="scale(1.2) translate(-42 -42)">
+<!-- Background Hexagon -->
+<path d="M256 80 L400 165 V335 L256 420 L112 335 V165 L256 80Z" stroke="#948ea5" stroke-width="4" stroke-opacity="0.3" fill="none"/>
+
+<!-- Faint Ethereum Logo (Background) -->
+<g opacity="0.15">
+<path d="M256 130 L256 310 L160 260 L256 130Z" fill="#E2DCEB"/>
+<path d="M256 130 L352 260 L256 310 L256 130Z" fill="#fff"/>
+<path d="M256 330 L256 400 L160 280 L256 330Z" fill="#E2DCEB"/>
+<path d="M256 330 L352 280 L256 400 L256 330Z" fill="#fff"/>
+</g>
+
+<!-- Elegant Feather Quill -->
+<!-- Shaft -->
+<path d="M180 380 Q 240 320 380 120" stroke="#E2DCEB" stroke-width="6" stroke-linecap="round"/>
+<!-- Vanes/Feather body -->
+<path d="M380 120 C 350 120 300 140 250 200 C 220 236 200 280 180 380" fill="#E2DCEB" fill-opacity="0.9"/>
+<path d="M380 120 C 400 140 380 180 340 230 C 310 267 280 290 240 320" fill="#E2DCEB" fill-opacity="0.8"/>
+
+<!-- Quill Nib -->
+<path d="M180 380 L165 410 L195 400 L180 380Z" fill="#C9A962"/>
+
+<!-- Ink Line/Signature -->
+<path d="M165 410 Q 220 430 350 390" stroke="#C9A962" stroke-width="4" stroke-opacity="0.8" stroke-linecap="round"/>
+</g>
+
+<defs>
+<linearGradient id="bg_gradient" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2d2640"/>
+<stop offset="1" stop-color="#564d70"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { generateDeepAnalysis } from "../services/deepAnalysis";
+import { generateDeepAnalysis } from "../../../services/deepAnalysis";
 import {
   getCollectionResearch,
   generateComprehensiveResearch,
-} from "../services/nftResearch";
+} from "../../../services/nftResearch";
 import "./DeepAnalysis.css";
 
 /**
@@ -87,31 +87,6 @@ const DeepAnalysis = ({ nft, floorPrice, collectionData }) => {
         return (
           <div className="tab-content">
             {/* Verification Badge */}
-            {analysis.hasVerifiedData ? (
-              <div className="verified-badge">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-                </svg>
-                Verified Research Data
-              </div>
-            ) : (
-              <div className="verified-badge unverified">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-                </svg>
-                Analysis powered by research data
-              </div>
-            )}
 
             {/* Collection Overview */}
             <div className="analysis-header">

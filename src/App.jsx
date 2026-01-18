@@ -5,7 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/layout/Sidebar";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import NFTDetail from "./pages/NFTDetail";
