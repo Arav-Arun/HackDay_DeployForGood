@@ -1,13 +1,13 @@
 # LoreMint
-![CampusFind Banner](src/assets/banner.png)
+![LoreMint Banner](src/assets/banner.png)
 
-**LoreMint** is a next-generation NFT analytics and storytelling platform that bridges the gap between on-chain data and creative lore. By leveraging **Alchemy's blockchain data** and **OpenAI's generative capabilities**, LoreMint transforms static NFT metadata into immersive narratives while providing deep financial insights.
+**LoreMint** is a next-generation NFT analytics and storytelling platform that bridges the gap between on chain data and creative lore. By leveraging **Alchemy's blockchain data** and **generative capabilities of gemini 2.5 and openAI GPT 4**, LoreMint transforms static NFT metadata into immersive narratives while providing deep financial insights.
 
 ## Key Features
 
 ### Deep NFT Analytics
 
-- **Real-Time Valuation**: Market-aware rarity scoring engine that combines trait rarity with floor price context.
+- **Real-Time Valuation**: Market aware rarity scoring engine that combines trait rarity with floor price context.
 - **Harmonic Rarity Algorithm**: Advanced statistical model to identify true gems within collections.
 - **Collection Insights**: Detailed stats, floor price trends, and volume data fetched instantly via Alchemy.
 
@@ -17,10 +17,6 @@
 - **Trait Explanation**: Contextualizes obscure attributes (e.g., "Why is 'Golden Fur' valuable?").
 - **Interactive Storytelling**: Brings static JPEGs to life with rich, immersive text.
 
-### Premium User Experience
-
-- **Glassmorphism Design**: Modern, sleek UI with frosted glass effects and dynamic gradients.
-- **Responsive Layout**: Fully optimized for desktop and mobile devices.
 - **Seamless Web3 Integration**: Connect with MetaMask/WalletConnect via Wagmi and Viem.
 
 ---
@@ -28,26 +24,31 @@
 ## Technology Stack
 
 ### Frontend Core
-
-- **[React 18](https://reactjs.org/)**: Component-based UI library.
-- **[Vite](https://vitejs.dev/)**: Next-generation frontend tooling for blazing fast builds.
-- **[React Router DOM](https://reactrouter.com/)**: Client-side routing.
+- **Core:** Framework: React 19 (Latest)
+- **Build Tool:** Vite
+- **Routing:** React Router DOM (v7)
+- **Styling:** Plain CSS (with modern variables/gradients) & Framer Motion for animations
 
 ### Web3 & Blockchain
+- **RainbowKit** (Wallet connection UI)
+- **Wagmi & Viem** (Ethereum hooks & replacement for ethers.js)
+- **Ethers.js** (Smart contract interaction)
+- **Alchemy SDK** Primary data source for NFT metadata, ownership, and collection stats.
 
-- **[Alchemy SDK](https://docs.alchemy.com/)**: Primary data source for NFT metadata, ownership, and collection stats.
-- **[Wagmi](https://wagmi.sh/) & [Viem](https://viem.sh/)**: React hooks for Ethereum wallet connection and interaction.
+### Data Fetching: 
+- TanStack Query (React Query)
 
-### Artificial Intelligence
+### Visualization: 
+Recharts (for price history/analytics)
 
-- Google Gemini API
+### Server: 
+Node.js + Express.js
 
-### Visualization & UI
-
-- **[Recharts](https://recharts.org/)**: Composable charting library for price history and rarity distribution.
-- **[Framer Motion](https://www.framer.com/motion/)**: Production-ready animation library for React.
-- **[Lucide React](https://lucide.dev/)**: Beautiful, consistent icon set.
-- **[CSS Modules](https://github.com/css-modules/css-modules)**: Scoped styling with advanced glassmorphism effects.
+### NFT Data: 
+Alchemy SDK
+### AI Models:
+OpenAI API
+Google Gemini 2.5 pro
 
 ---
 
@@ -103,4 +104,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-Built by Team Deploy For Good
+Built with ❤️ by Team Deploy For Good
