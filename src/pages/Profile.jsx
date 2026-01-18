@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount, useDisconnect } from "wagmi";
 import { useNFTData } from "../hooks/useNFTData";
+import ConnectWalletPopup from "../components/common/ConnectWalletPopup";
 import "./Profile.css";
 
 const Profile = () => {
@@ -9,16 +10,23 @@ const Profile = () => {
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const { nfts, loading } = useNFTData(address, isConnected);
+  const [popupDismissed, setPopupDismissed] = useState(false);
 
-  // Redirect if not connected
-  React.useEffect(() => {
-    if (!isConnected) {
-      navigate("/explore");
-    }
-  }, [isConnected, navigate]);
+  // Handle popup close - navigate away if still not connected
+  const handlePopupClose = () => {
+    setPopupDismissed(true);
+    navigate("/explore");
+  };
 
+  // Show popup if not connected and popup hasn't been dismissed
   if (!isConnected) {
-    return null;
+    return (
+      <ConnectWalletPopup
+        isOpen={!popupDismissed}
+        onClose={handlePopupClose}
+        featureName="your profile"
+      />
+    );
   }
 
   const formatAddress = (addr) => {

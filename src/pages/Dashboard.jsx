@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAccount, useDisconnect } from "wagmi";
 import { useNavigate } from "react-router-dom";
 import { useNFTData } from "../hooks/useNFTData";
 import NFTCard from "../components/common/NFTCard";
+import ConnectWalletPopup from "../components/common/ConnectWalletPopup";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -10,18 +11,12 @@ const Dashboard = () => {
   const { disconnect } = useDisconnect();
   const navigate = useNavigate();
   const [filter, setFilter] = useState("all");
+  const [popupDismissed, setPopupDismissed] = useState(false);
 
   // Use custom hook to fetch real NFT data
   const { nfts, loading, error, refetch } = useNFTData(address, isConnected);
 
-  useEffect(() => {
-    if (!isConnected) {
-      navigate("/");
-      return;
-    }
-  }, [isConnected, navigate]);
-
-  // Use useMemo to derive filtered NFTs instead of useEffect
+  // Use useMemo to derive filtered NFTs (must be called before conditional return)
   const filteredNfts = React.useMemo(() => {
     let sorted = [...nfts];
 
@@ -41,6 +36,23 @@ const Dashboard = () => {
 
     return sorted;
   }, [filter, nfts]);
+
+  // Handle popup close - navigate away if still not connected
+  const handlePopupClose = () => {
+    setPopupDismissed(true);
+    navigate("/");
+  };
+
+  // Show popup if not connected and popup hasn't been dismissed
+  if (!isConnected) {
+    return (
+      <ConnectWalletPopup
+        isOpen={!popupDismissed}
+        onClose={handlePopupClose}
+        featureName="your collection"
+      />
+    );
+  }
 
   const handleDisconnect = () => {
     disconnect();
