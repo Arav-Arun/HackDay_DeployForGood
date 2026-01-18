@@ -47,8 +47,8 @@ Node.js + Express.js
 ### NFT Data: 
 Alchemy SDK
 ### AI Models:
-OpenAI API
-Google Gemini 2.5 pro
+- OpenAI API
+- Google Gemini 2.5 pro
 
 ---
 
