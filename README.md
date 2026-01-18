@@ -1,4 +1,5 @@
 # LoreMint
+![CampusFind Banner](src/assets/banner.png)
 
 **LoreMint** is a next-generation NFT analytics and storytelling platform that bridges the gap between on-chain data and creative lore. By leveraging **Alchemy's blockchain data** and **OpenAI's generative capabilities**, LoreMint transforms static NFT metadata into immersive narratives while providing deep financial insights.
 
