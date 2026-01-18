@@ -104,4 +104,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-Built with ❤️ by Team Deploy For Good
+Built with ❤️ by Team **Deploy For Good**
